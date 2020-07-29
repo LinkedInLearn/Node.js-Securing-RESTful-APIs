@@ -37,18 +37,20 @@ export const login = (req, res) => {
             });
         }
         else if(user){
-            if(!user.comparePassword(req.body.password, user.hashPassword)){
+            if(!user.comparePassword(req.body.password, user.hashPassword)) {
                 res.status(401).send({
                     message: 'Wrong Password'
                 });
             }
             else{
-                return res.json({token: jwt.sign({
-                        email: user.email,
-                        username: user.username,
-                        _id: user.id},
-                        'RESTFULAPIS'
-                        )});
+                return res.json({
+                    token: jwt.sign({
+                            email: user.email,
+                            username: user.username,
+                            _id: user.id
+                        }, 'RESTFULAPIS'
+                    )
+                });
             }
         }
     })
