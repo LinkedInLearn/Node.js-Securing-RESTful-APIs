@@ -10,7 +10,7 @@ const User = mongoose.model('User', UserSchema);
 export const register = (req, res) => {
     const newUser = new User(req.body);
 
-    newContact.hashPassword = bcrypt.hashSync(req.body.password, 10);
+    newUser.hashPassword = bcrypt.hashSync(req.body.password, 10);
     newUser.save((err, user) => {
         if(err){
             return res.status(400).send({
